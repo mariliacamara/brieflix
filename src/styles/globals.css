@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.navigation {
+  display: block;
+  @apply container mx-auto flex flex-wrap flex-row justify-between items-center py-12 border-b border-zinc-900;
+}
+
+.logo {
+  @apply flex flex-col text-center;
+}
+
+.logo span {
+  @apply text-xl font-bold font-plex lowercase text-teal-300;
+}
+
+.menu ul {
+  @apply flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium;
+}
+
+.menu a {
+  @apply mx-6 text-base font-thin;
+}
+
+.menu a:last-child {
+  @apply mr-0;
+}

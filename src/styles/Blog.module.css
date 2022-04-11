@@ -1,0 +1,11 @@
+.wrapper {
+  @apply container mx-auto px-4 lg:px-[10rem];
+}
+
+.pageTitle {
+  @apply text-4xl lg:text-5xl mt-[4rem] font-bold;
+}
+
+.pageDescription {
+  @apply mt-4 text-lg;
+}

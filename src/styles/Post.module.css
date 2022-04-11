@@ -1,0 +1,7 @@
+.wrapper {
+  @apply container mx-auto;
+}
+
+.featuredImage {
+  @apply relative w-full h-96;
+}

@@ -52,7 +52,7 @@ const SingleTVShow = (props: Props) => {
               <hr className="custom-hr" />
               <div dangerouslySetInnerHTML={{ __html: synopsis }}></div>
               <div>{general.releaseYear}</div>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-row gap-3">
                 {genre &&
                   genre.map((genre) => {
                     return (
@@ -101,7 +101,7 @@ export async function getStaticProps({ params }) {
       character: movie.moviefields.character,
       genre: movie.moviefields.genre,
       media: {
-        background: movie.moviefields.backgroundImg?.mediaItemUrl,
+        background: movie.moviefields.backgroundImg?.mediaItemUrl || null,
         video: movie.moviefields.trailer
       },
       main: {},

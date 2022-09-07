@@ -18,6 +18,17 @@ body {
   @apply flex;
 }
 
+.wrapper {
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.custom-hr {
+  width: 40%;
+  border: 2px solid rgb(220 38 38);
+  @apply my-4;
+}
+
 .shadow {
   position: absolute;
   top: 130px;

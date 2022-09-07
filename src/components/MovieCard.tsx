@@ -6,19 +6,23 @@ interface Props {
   releaseYear: string
   featuredImage: string
   slug: string
+  projectType: string
 }
 
 export const MovieCard = (props: Props) => {
-  const { title, releaseYear, featuredImage, slug } = props
+  const { title, releaseYear, featuredImage, slug, projectType } = props
+
+  const noImage = '/no-image.png'
+
   return (
     <div className="py-3 w-[200px] h-[310px] hover:bg-zinc-800 shadow-lg sm:rounded-xl p-3 space-x-2 transition ease-in-out delay-150">
       <div className="flex flex-col  ">
-        <Link href={`/filmes/${slug}`}>
+        <Link href={`/${projectType}/${slug}`}>
           <a>
             <div className="overflow-visible">
               <Image
                 className="rounded-2xl shadow-lg"
-                src={featuredImage}
+                src={featuredImage ? featuredImage : noImage}
                 alt="Movie"
                 height={360}
                 width={300}
@@ -29,7 +33,7 @@ export const MovieCard = (props: Props) => {
         </Link>
         <div className="space-y-4 mt-2">
           <div className="flex justify-between items-start gap-2">
-            <Link href={`/filmes/${slug}`}>
+            <Link href={`/${projectType}/${slug}`}>
               <a>
                 <h2 className="text-lg font-bold text-white">
                   {title}

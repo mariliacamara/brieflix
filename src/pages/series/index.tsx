@@ -34,7 +34,7 @@ interface Props {
   edges: Movie[]
 }
 
-const Home: NextPage<Props> = ({ edges }) => {
+const Series: NextPage<Props> = ({ edges }) => {
   const [search, setSearch] = useState('')
 
   const filteredProjects = search.length
@@ -52,7 +52,7 @@ const Home: NextPage<Props> = ({ edges }) => {
         <div className="flex flex-row items-center gap-3  text-red-500">
           <Popcorn size={32} />
           <h1 className="text-xl text-zinc-100 font-bold p-0">
-            Todos os filmes
+            Todos as séries
           </h1>
         </div>
         <div className="relative">
@@ -83,10 +83,10 @@ const Home: NextPage<Props> = ({ edges }) => {
         {filteredProjects.map((movie) => (
           <MovieCard
             key={movie.node.slug}
-            projectType="filmes"
+            projectType="series"
             title={movie.node.title}
             releaseYear={movie.node.moviefields.releaseyear}
-            featuredImage={movie.node.featuredImage.node.mediaItemUrl}
+            featuredImage={movie.node.featuredImage?.node.mediaItemUrl}
             slug={movie.node.slug}
           />
         ))}
@@ -99,7 +99,7 @@ export async function getStaticProps() {
   let { edges } = await getProjects()
 
   edges = edges
-    .filter((e: Movie) => e.node.moviefields.projectType === 'movie')
+    .filter((e: Movie) => e.node.moviefields.projectType === 'tvshow')
     .sort((a: Movie, b: Movie) =>
       a.node.moviefields.releaseyear > b.node.moviefields.releaseyear ? -1 : 1
     )
@@ -111,4 +111,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Home
+export default Series

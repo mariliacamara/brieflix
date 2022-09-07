@@ -12,7 +12,7 @@ import {
 export const Aside = () => {
   return (
     <aside
-      className="w-72 h-screen bg-zinc-800 fixed flex flex-col justify-between"
+      className="w-72 h-screen border border-r-2 border-zinc-800 fixed flex flex-col justify-between"
       aria-label="Sidebar"
     >
       <div className="overflow-hidden py-4 px-5 rounded relative">
@@ -28,7 +28,7 @@ export const Aside = () => {
               <div className="shadow"></div>
             </a>
           </Link>
-          <p className="text-center text-zinc-500 mt-12 text-sm">
+          <p className="text-center text-zinc-300 mt-12 text-sm">
             Este é um acervo referente a toda filmografia e producões realizadas
             por Brie Larson, seja atuando, dirigindo ou narrando.{' '}
           </p>
@@ -53,7 +53,7 @@ export const Aside = () => {
             </a>
           </li>
           <li>
-            <a href="#" className="links--items group">
+            <a href="/series" className="links--items group">
               <Television size={24} />
               <span className="links--items-span">Séries</span>
             </a>

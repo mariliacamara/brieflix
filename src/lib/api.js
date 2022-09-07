@@ -50,3 +50,61 @@ export async function getProjects() {
 
   return data?.movies
 }
+
+export async function getProjectsWithSlug() {
+  const data = await fetchAPI(
+    `
+    {
+      movies(first: 300) {
+        edges {
+          node {
+            slug
+            moviefields {
+              projectType
+            }
+          }
+        }
+      }
+    }
+  `
+  )
+  return data?.movies
+}
+
+export async function getProject(slug) {
+  const data = await fetchAPI(
+    `
+    fragment ProjectFields on Movie {
+      id
+      date
+      title
+      slug
+      moviefields {
+        releaseyear
+        synopsis
+        character
+        genre
+        trailer
+        backgroundImg {
+          id
+          mediaItemUrl
+        }
+      }
+    }
+    query ProjectBySlug($id: ID!, $idType: MovieIdType!) {
+      movie(id: $id, idType: $idType) {
+        ...ProjectFields
+        title
+      }
+    }
+  `,
+    {
+      variables: {
+        id: slug,
+        idType: 'SLUG'
+      }
+    }
+  )
+
+  return data
+}

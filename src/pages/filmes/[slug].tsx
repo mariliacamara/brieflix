@@ -1,5 +1,11 @@
+import Main from '@/layouts/main'
+
 const SingleMovie = () => {
-  return <h1>Single movie</h1>
+  return (
+    <Main>
+      <h1>Single movie</h1>
+    </Main>
+  )
 }
 
 export default SingleMovie

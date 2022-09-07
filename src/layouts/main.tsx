@@ -6,10 +6,11 @@ interface Props {
 
 const Main = (props: Props) => {
   const { children } = props
+
   return (
     <>
       <Aside />
-      <main className="main--section ml-80 mt-6 pr-6">{children}</main>
+      <main className="main--section text-white">{children}</main>
     </>
   )
 }

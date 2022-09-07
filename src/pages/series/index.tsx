@@ -48,48 +48,50 @@ const Series: NextPage<Props> = ({ edges }) => {
       <Head>
         <title>Brieflix</title>
       </Head>
-      <div className="flex flex-row justify-between w-full mb-6">
-        <div className="flex flex-row items-center gap-3  text-red-500">
-          <Popcorn size={32} />
-          <h1 className="text-xl text-zinc-100 font-bold p-0">
-            Todos as séries
-          </h1>
-        </div>
-        <div className="relative">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      <div className="ml-80 pt-6 pr-6">
+        <div className="flex flex-row justify-between w-full mb-6">
+          <div className="flex flex-row items-center gap-3  text-red-500">
+            <Popcorn size={32} />
+            <h1 className="text-xl text-zinc-100 font-bold p-0">
+              Todos as séries
+            </h1>
+          </div>
+          <div className="relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input
+              type="text"
+              placeholder="Pesquise em filmes..."
+              className="w-full py-3 pl-12 pr-4 text-gray-500 border border-zinc-800 rounded-md outline-none bg-zinc-900 focus:bg-zinc-700 focus:border-zinc-600 transition ease-in-out delay-150"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </svg>
-          <input
-            type="text"
-            placeholder="Pesquise em filmes..."
-            className="w-full py-3 pl-12 pr-4 text-gray-500 border border-zinc-800 rounded-md outline-none bg-zinc-900 focus:bg-zinc-700 focus:border-zinc-600 transition ease-in-out delay-150"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          </div>
         </div>
-      </div>
-      <div className="flex gap-4">
-        {filteredProjects.map((movie) => (
-          <MovieCard
-            key={movie.node.slug}
-            projectType="series"
-            title={movie.node.title}
-            releaseYear={movie.node.moviefields.releaseyear}
-            featuredImage={movie.node.featuredImage?.node.mediaItemUrl}
-            slug={movie.node.slug}
-          />
-        ))}
+        <div className="flex gap-4">
+          {filteredProjects.map((movie) => (
+            <MovieCard
+              key={movie.node.slug}
+              projectType="series"
+              title={movie.node.title}
+              releaseYear={movie.node.moviefields.releaseyear}
+              featuredImage={movie.node.featuredImage?.node.mediaItemUrl}
+              slug={movie.node.slug}
+            />
+          ))}
+        </div>
       </div>
     </Main>
   )

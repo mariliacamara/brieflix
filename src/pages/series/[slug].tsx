@@ -1,4 +1,5 @@
 import { Breadcrumb } from '@/components/Breadcrumb'
+import Head from 'next/head'
 import Main from '@/layouts/main'
 import { getProjectsWithSlug, getProject } from '@/lib/api'
 
@@ -23,9 +24,11 @@ interface Props {
 const SingleTVShow = (props: Props) => {
   const { title, synopsis, character, genre, general, media } = props
 
-  console.log(genre)
   return (
     <Main>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <div
         className="wrapper h-screen"
         style={{

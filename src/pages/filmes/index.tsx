@@ -86,6 +86,7 @@ const Home: NextPage<Props> = ({ edges }) => {
             title={movie.node.title}
             releaseYear={movie.node.moviefields.releaseyear}
             featuredImage={movie.node.featuredImage.node.mediaItemUrl}
+            slug={movie.node.slug}
           />
         ))}
       </div>

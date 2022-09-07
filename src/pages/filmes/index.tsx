@@ -72,7 +72,7 @@ const Home: NextPage<Props> = ({ edges }) => {
           </svg>
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Pesquise em filmes..."
             className="w-full py-3 pl-12 pr-4 text-gray-500 border border-zinc-800 rounded-md outline-none bg-zinc-900 focus:bg-zinc-700 focus:border-zinc-600 transition ease-in-out delay-150"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

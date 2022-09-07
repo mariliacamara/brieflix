@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Bebas";
+  src:  url("/fonts/BebasNeue-Regular.woff2") format("woff2"),
+        url("/fonts/BebasNeue-Regular.woff") format("woff"),
+        url("/fonts/BebasNeue-Regular.ttf") format("truetype");
+}
+
 body {
+  font-family: 'Poppins', sans-serif;
   @apply bg-zinc-900;
 }
 
@@ -39,7 +47,7 @@ body {
     hover:text-red-200 hover:bg-red-600;
 
     &-span {
-      @apply ml-6 text-zinc-500 font-semibold group-hover:text-white;
+      @apply ml-6 text-zinc-500 font-normal group-hover:text-white;
     }
   }
 }

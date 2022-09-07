@@ -7,7 +7,10 @@ const Home = () => {
       <Head>
         <title>Brieflix</title>
       </Head>
-      <h1 className="text-3xl text-white">HELLO WORLD</h1>
+      <h2 className="text-3xl text-white">Em destaque</h2>
+      <h2 className="text-3xl text-white">Em cartaz</h2>
+      <h2 className="text-3xl text-white">Filmes</h2>
+      <h2 className="text-3xl text-white">Séries</h2>
     </Main>
   )
 }

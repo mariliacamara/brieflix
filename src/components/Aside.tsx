@@ -11,7 +11,10 @@ import {
 
 export const Aside = () => {
   return (
-    <aside className="w-72 h-screen bg-zinc-800 fixed" aria-label="Sidebar">
+    <aside
+      className="w-72 h-screen bg-zinc-800 fixed flex flex-col justify-between"
+      aria-label="Sidebar"
+    >
       <div className="overflow-hidden py-4 px-5 rounded relative">
         <div className="image--wrapper mt-6 mb-16">
           <Link href="/">
@@ -25,6 +28,10 @@ export const Aside = () => {
               <div className="shadow"></div>
             </a>
           </Link>
+          <p className="text-center text-zinc-500 mt-12 text-sm">
+            Este é um acervo referente a toda filmografia e producões realizadas
+            por Brie Larson, seja atuando, dirigindo ou narrando.{' '}
+          </p>
         </div>
         <ul className="space-y-2">
           <li>
@@ -46,24 +53,27 @@ export const Aside = () => {
             </a>
           </li>
           <li>
-            <a href="#" className="links--items">
+            <a href="#" className="links--items group">
               <Television size={24} />
               <span className="links--items-span">Séries</span>
             </a>
           </li>
           <li>
-            <a href="#" className="links--items">
+            <a href="#" className="links--items group">
               <FilmSlate size={24} />
               <span className="links--items-span">Direção</span>
             </a>
           </li>
           <li>
-            <a href="#" className="links--items">
+            <a href="#" className="links--items group">
               <FilmStrip size={24} />
               <span className="links--items-span">Documentários</span>
             </a>
           </li>
         </ul>
+      </div>
+      <div className="py-4 px-5 text-white text-sm">
+        Desenvolvido por Marília Câmara
       </div>
     </aside>
   )

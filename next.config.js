@@ -2,5 +2,8 @@
 
 module.exports = {
   reactStrictMode: true,
-  output: 'standalone'
+  output: 'standalone',
+  images: {
+    domains: ['brielarson.com.br']
+  }
 }

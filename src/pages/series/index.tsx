@@ -4,9 +4,10 @@ import Head from 'next/head'
 import Main from '@/layouts/main'
 import { getProjects } from '@/lib/api'
 import { MovieCard } from '@/components/MovieCard'
-import { Popcorn } from 'phosphor-react'
+import { Television } from 'phosphor-react'
 
 type MovieFields = {
+  originalTitle: string
   projectType: string
   releaseyear: string
 }
@@ -38,20 +39,24 @@ const Series: NextPage<Props> = ({ edges }) => {
   const [search, setSearch] = useState('')
 
   const filteredProjects = search.length
-    ? edges.filter((edge) =>
-        edge.node.title.toLowerCase().includes(search.toLowerCase())
+    ? edges.filter(
+        (edge) =>
+          edge.node.title.toLowerCase().includes(search.toLowerCase()) ||
+          edge.node.moviefields.originalTitle
+            ?.toLowerCase()
+            .includes(search.toLowerCase())
       )
     : edges
 
   return (
     <Main>
       <Head>
-        <title>Brieflix</title>
+        <title>Séries</title>
       </Head>
       <div className="ml-80 pt-6 pr-6">
         <div className="flex flex-row justify-between w-full mb-6">
           <div className="flex flex-row items-center gap-3  text-red-500">
-            <Popcorn size={32} />
+            <Television size={32} />
             <h1 className="text-xl text-zinc-100 font-bold p-0">
               Todos as séries
             </h1>

@@ -9,6 +9,7 @@ import { Popcorn } from 'phosphor-react'
 type MovieFields = {
   projectType: string
   releaseyear: string
+  originalTitle: string
 }
 
 type FeaturedMedia = {
@@ -38,8 +39,11 @@ const Home: NextPage<Props> = ({ edges }) => {
   const [search, setSearch] = useState('')
 
   const filteredProjects = search.length
-    ? edges.filter((edge) =>
-        edge.node.title.toLowerCase().includes(search.toLowerCase())
+    ? edges.filter(
+        (edge) =>
+          edge.node.title.toLowerCase().includes(search.toLowerCase()) ||
+          // eslint-disable-next-line prettier/prettier
+          edge.node.moviefields.originalTitle?.toLowerCase().includes(search.toLowerCase())
       )
     : edges
 

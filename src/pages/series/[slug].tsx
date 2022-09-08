@@ -2,10 +2,25 @@ import { Breadcrumb } from '@/components/Breadcrumb'
 import Head from 'next/head'
 import Main from '@/layouts/main'
 import { getProjectsWithSlug, getProject } from '@/lib/api'
+import { Television } from 'phosphor-react'
+import { StreamingBadges } from '@/components/StreamingBadges'
+import { YoutubeVideo } from '@/components/Video'
 
 interface Media {
   video: string
   background: string
+}
+
+interface Streamings {
+  netflix: string
+  hboMax: string
+  globoplay: string
+  primeVideo: string
+  disneyPlus: string
+  starPlus: string
+  telecine: string
+  appleTV: string
+  paramount: string
 }
 
 interface GeneralInformation {
@@ -16,13 +31,24 @@ interface Props {
   title: string
   synopsis: string
   character: string
+  displayStreaming: boolean
   genre: Array<string>
   general: GeneralInformation
   media: Media
+  streamings: Streamings
 }
 
 const SingleTVShow = (props: Props) => {
-  const { title, synopsis, character, genre, general, media } = props
+  const {
+    title,
+    synopsis,
+    character,
+    displayStreaming,
+    genre,
+    general,
+    media,
+    streamings
+  } = props
 
   return (
     <Main>
@@ -35,7 +61,7 @@ const SingleTVShow = (props: Props) => {
           backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.7) 100%), url(${media.background})`
         }}
       >
-        <div className="ml-80 pt-6 pr-6 flex flex-row justify-between">
+        <div className="h-screen ml-80 pt-6 pr-6 gap-4 flex flex-col lg:flex-row lg:justify-between">
           <div className="max-w-[500px]">
             <header>
               <Breadcrumb
@@ -43,9 +69,8 @@ const SingleTVShow = (props: Props) => {
                 projectType="Séries"
                 projectName={title}
               />
-              <h1 className="mt-10 text-3xl font-semibold text-white">
-                {title}
-              </h1>
+              <Television className="mt-10 mb-3 text-red-600" size={46} />
+              <h1 className="text-4xl font-semibold text-white">{title}</h1>
               {character && (
                 <p className="my-2 text-zinc-400 drop-shadow-lg shadow-black">
                   Brie Larson interpreta {character}
@@ -54,23 +79,36 @@ const SingleTVShow = (props: Props) => {
 
               <hr className="custom-hr" />
               <div dangerouslySetInnerHTML={{ __html: synopsis }}></div>
-              <div>{general.releaseYear}</div>
-              <div className="mt-6 flex flex-row gap-3">
-                {genre &&
-                  genre.map((genre) => {
+              {genre && (
+                <div className="mt-6 flex flex-row gap-3">
+                  {genre.map((genre, idx) => {
                     return (
-                      <span
-                        key={genre}
-                        className="px-4 py-2 rounded-full text-gray-500 bg-gray-200 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
-                      >
+                      <span key={idx} className="text-xl font-semibold">
                         {genre}
                       </span>
                     )
                   })}
-              </div>
+                </div>
+              )}
+              {general.releaseYear && (
+                <div className="mt-1 text-lg font-extralight">
+                  {general.releaseYear}
+                </div>
+              )}
+              <h2 className="mt-8 mb-2 text-3xl ">Onde assistir:</h2>
+              {displayStreaming ? (
+                <StreamingBadges streamings={streamings} />
+              ) : (
+                <div className="text-zinc-500">
+                  Não há nenhum serviço de streaming disponível para essa
+                  produção.
+                </div>
+              )}
             </header>
           </div>
-          <div>123</div>
+          <div className="self-end w-full lg:w-[600px]">
+            <YoutubeVideo />
+          </div>
         </div>
       </div>
     </Main>
@@ -95,8 +133,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { movie } = await getProject(params.slug)
 
-  console.log(movie)
-
   return {
     props: {
       title: movie.title,
@@ -107,7 +143,18 @@ export async function getStaticProps({ params }) {
         background: movie.moviefields.backgroundImg?.mediaItemUrl || null,
         video: movie.moviefields.trailer
       },
-      main: {},
+      displayStreaming: movie.moviefields.displayStreaming,
+      streamings: {
+        netflix: movie.moviefields.netflix,
+        hboMax: movie.moviefields.hboMax,
+        globoplay: movie.moviefields.globoplay,
+        primeVideo: movie.moviefields.amazonPrime,
+        disneyPlus: movie.moviefields.disneyPlus,
+        starPlus: movie.moviefields.starPlus,
+        telecine: movie.moviefields.telecine,
+        appleTv: movie.moviefields.appleTv,
+        paramount: movie.moviefields.paramount
+      },
       general: {
         releaseYear: movie.moviefields.releaseyear
       }

@@ -9,7 +9,7 @@ interface Props {
 export const Breadcrumb = (props: Props) => {
   const { path, projectType, projectName } = props
   return (
-    <nav className="flex" aria-label="Breadcrumb">
+    <nav className="flex w-fit" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
         <li className="inline-flex items-center">
           <Link href="/">

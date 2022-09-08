@@ -35,6 +35,7 @@ export async function getProjects() {
             moviefields {
               releaseyear
               projectType
+              originalTitle
             }
             featuredImage {
               node {
@@ -80,6 +81,7 @@ export async function getProject(slug) {
       title
       slug
       moviefields {
+        originalTitle
         releaseyear
         synopsis
         character
@@ -89,6 +91,16 @@ export async function getProject(slug) {
           id
           mediaItemUrl
         }
+        displayStreaming
+        netflix
+        hboMax
+        globoplay
+        amazonPrime
+        disneyPlus
+        starPlus
+        telecine
+        appleTv
+        paramount
       }
     }
     query ProjectBySlug($id: ID!, $idType: MovieIdType!) {
